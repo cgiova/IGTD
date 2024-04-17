@@ -352,7 +352,7 @@ def IGTD_absolute_error(source, target, max_step=1000, switch_t=0, val_step=50, 
 
         pre_err = err
 
-    index_record = index_record[:len(err_record), :].astype(np.int)
+    index_record = index_record[:len(err_record), :].astype(int)
     if save_folder is not None:
         pd.DataFrame(index_record).to_csv(save_folder + '/' + file_name + '_index.txt', header=False, index=False,
             sep='\t', line_terminator='\r\n')
@@ -493,7 +493,7 @@ def IGTD_square_error(source, target, max_step=1000, switch_t=0, val_step=50, mi
             source[:, jj] = ii_v
             err = pre_err - delta[jj]
 
-            # update rearrange index
+            # update rearrange in
             t = index[ii]
             index[ii] = index[jj]
             index[jj] = t
@@ -520,7 +520,7 @@ def IGTD_square_error(source, target, max_step=1000, switch_t=0, val_step=50, mi
 
         pre_err = err
 
-    index_record = index_record[:len(err_record), :].astype(np.int)
+    index_record = index_record[:len(err_record), :].astype(int)
     if save_folder is not None:
         pd.DataFrame(index_record).to_csv(save_folder + '/' + file_name + '_index.txt', header=False, index=False,
             sep='\t', line_terminator='\r\n')
@@ -576,7 +576,7 @@ def generate_image_data(data, index, num_row, num_column, coord, image_folder=No
     '''
 
     if isinstance(data, pd.DataFrame):
-        samples = data.index.map(np.str)
+        samples = data.index.map(str)
         data = data.values
     else:
         samples = [str(i) for i in range(data.shape[0])]
